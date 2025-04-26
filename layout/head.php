@@ -1,19 +1,18 @@
-<?php
-if (! defined('PROJECT_ROOT')) {
-    define('PROJECT_ROOT', realpath(__DIR__ . '/..')); 
-    // __DIR__ is layout/, so PROJECT_ROOT becomes project root
-}
-?>
+
+<?php 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}?>
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Your custom CSS -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <!-- <link rel="stylesheet" href="css/styles.css" /> -->
 <!-- You have two of these -->
 <!-- <link rel="stylesheet" href="/Practical-Assignment-3-1/src/css/output.css" /> -->
-<link href="/Practical-Assignment-3-1/src/output.css" rel="stylesheet">
+<link href="/Practical-Assignment-3/src/output.css" rel="stylesheet">
 
 
   <!-- Font Awesome -->

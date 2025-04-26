@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'layout/head.php'; ?>
+<?php include '../layout/head.php'; ?>
 
 <body>
 <main class="min-h-screen bg-gray-100 dark:bg-gray-900 px-4 py-8">
@@ -58,7 +58,7 @@
 
 </main>
 
-    <?php include 'layout/footer.php'; ?>
+    <?php include '../layout/footer.php'; ?>
 
     <!-- <div id="footer"></div> -->
 

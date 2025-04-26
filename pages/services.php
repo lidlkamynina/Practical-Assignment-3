@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'layout/head.php'; ?>
+<?php include '../layout/head.php'; ?>
 
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
@@ -30,7 +30,7 @@
         </section>
     </main>
 
-    <?php include 'layout/footer.php'; ?>
+    <?php include '../layout/footer.php'; ?>
 
     <!-- Your existing script.js (renders & filters cards) -->
     <script src="/Practical-Assignment-3-1/js/script.js"></script>

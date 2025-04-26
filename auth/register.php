@@ -1,7 +1,48 @@
+<?php
+
+require_once '../includes/db.php'; // Adjust path if needed
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get form fields
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    $password_confirmation = $_POST['password_confirmation'];
+
+    // Validate
+    if (empty($name) || empty($email) || empty($password) || empty($password_confirmation)) {
+        $error = "Please fill in all fields.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Invalid email format.";
+    } elseif ($password !== $password_confirmation) {
+        $error = "Passwords do not match.";
+    } else {
+        // Check if email already exists
+        $statement = $pdo->prepare('SELECT id FROM users WHERE email = ?');
+        $statement->execute([$email]);
+        if ($statement->fetch()) {
+            $error = "Email already registered.";
+        } else {
+            // Hash password
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            // Insert user into database
+            $statement = $pdo->prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)');
+            $statement->execute([$name, $email, $hashedPassword]);
+
+            // Redirect or success message
+            $_SESSION['success'] = "Account created successfully! Please log in.";
+            header('Location: login.php');
+            exit();
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include 'layout/head.php'; ?>
+<?php include '../layout/head.php'; ?>
 
 <body class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
@@ -15,7 +56,7 @@
                     Enter your credentials below
                 </p>
             </div>
-      <form action="/register.php" method="POST" class="space-y-4">
+      <form action="register.php" method="POST" class="space-y-4">
         <div>
           <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
           <input
@@ -59,7 +100,7 @@
             placeholder="Confirm Password"
             />
         </div>
-        <button type="button" class="w-full focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Green</button>
+        <button type="submit" class="w-full focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Submit</button>
 
       </form>
       <p class="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
@@ -69,7 +110,7 @@
     </div>
   </main>
 
-  <?php include 'layout/footer.php'; ?>
+  <?php include '../layout/footer.php'; ?>
 </body>
 
 </html>

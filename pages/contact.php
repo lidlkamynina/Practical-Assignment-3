@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include 'layout/head.php'; ?>
+<?php include '../layout/head.php'; ?>
 
 <body id="boddy" class="bg-light ">
 
@@ -46,7 +46,7 @@
     </section>
   </main>
 
-  <?php include 'layout/footer.php'; ?>
+  <?php include '../layout/footer.php'; ?>
 
 
   <script src="js/script.js"></script>

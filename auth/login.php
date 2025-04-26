@@ -1,9 +1,37 @@
-<?php include 'layout/head.php'; ?>
+<?php
+session_start();
+require_once '../includes/db.php';
+// session_start(); // Or if already inside head.php, fine!
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-<!DOCTYPE html>
-<html lang="en">
+    $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ?');
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
 
+    if ($user && password_verify($password, $user['password'])) {
+        session_regenerate_id(true);
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['login_success'] = "Welcome back, {$user['username']}!";
+
+        setcookie('last_visit', date('Y-m-d H:i:s'), time() + 86400 * 30, "/");
+        setcookie('username', $user['username'], time() + 86400 * 30, "/");
+
+        header('Location: /Practical-Assignment-3/index.php');
+        exit;
+    } else {
+        $error = "Invalid credentials!";
+    }
+}
+
+// 🧠 Only now, after all processing, you can start sending HTML
+
+?>
+<html>
+<?php include '../layout/head.php'; ?>
 
 <body class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
     <main class="flex-1 flex items-center justify-center px-4 py-12">
@@ -17,7 +45,7 @@
             </div>
 
             <!-- Form -->
-            <form action="/login.php" method="POST" class="mt-6 space-y-6">
+            <form action="login.php" method="POST" class="mt-6 space-y-6">
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email address</label>
                     <input
@@ -68,7 +96,7 @@
 
 
 
-    <?php include 'layout/footer.php'; ?>
+    <?php include '../layout/footer.php'; ?>
 </body>
 
 </html>
