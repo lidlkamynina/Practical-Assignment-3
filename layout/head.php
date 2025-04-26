@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
   <!-- Your custom CSS -->
   <!-- <link rel="stylesheet" href="css/styles.css" /> -->
 <!-- You have two of these -->
-<!-- <link rel="stylesheet" href="/Practical-Assignment-3-1/src/css/output.css" /> -->
+<!-- <link rel="stylesheet" href="/Practical-Assignment-3/src/css/output.css" /> -->
 <link href="/Practical-Assignment-3/src/output.css" rel="stylesheet">
 
 

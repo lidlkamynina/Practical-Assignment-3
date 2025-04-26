@@ -33,7 +33,7 @@
     <?php include '../layout/footer.php'; ?>
 
     <!-- Your existing script.js (renders & filters cards) -->
-    <script src="/Practical-Assignment-3-1/js/script.js"></script>
+    <script src="/Practical-Assignment-3/js/script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Services Data

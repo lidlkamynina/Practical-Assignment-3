@@ -7,15 +7,16 @@ $base_pages = '/Practical-Assignment-3/pages';
 ?>
 <?php
 require_once __DIR__ . '/../includes/db.php';
-function is_logged_in() {
+function is_logged_in()
+{
   return isset($_SESSION['user_id']);
 }
 $userData = null;
 
 if (is_logged_in()) {
-    $stmt = $pdo->prepare('SELECT name, email FROM users WHERE id = ?');
-    $stmt->execute([$_SESSION['user_id']]);
-    $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+  $stmt = $pdo->prepare('SELECT name, email FROM users WHERE id = ?');
+  $stmt->execute([$_SESSION['user_id']]);
+  $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -41,21 +42,25 @@ if (is_logged_in()) {
       </button>
       <!-- Dropdown menu -->
       <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+        <?php if (is_logged_in()): ?>
+          <div class="px-4 py-3">
+            <span class="block text-sm text-gray-900 dark:text-white">
+              <?= htmlspecialchars($userData['name']); ?>
+            </span>
+            <span class="block text-sm text-gray-500 truncate dark:text-gray-400">
+              <?= htmlspecialchars($userData['email']); ?>
+            </span>
+            <!-- <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span> -->
 
-      <div class="px-4 py-3">
-    <span class="block text-sm text-gray-900 dark:text-white">
-        <?= htmlspecialchars($userData['name'] ?? 'Guest'); ?>
-    </span>
-    <span class="block text-sm text-gray-500 truncate dark:text-gray-400">
-        <?= htmlspecialchars($userData['email'] ?? 'No email'); ?>
-    </span>
-    <!-- <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span> -->
+          </div>
+        <?php endif; ?>
 
-</div>
         <ul class="py-2" aria-labelledby="user-menu-button">
-          <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
-          </li>
+          <?php if (is_logged_in()): ?>
+            <li>
+              <a href="/Practical-Assignment-3\admin\dashboard.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+            </li>
+          <?php endif; ?>
           <li>
             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
           </li>
