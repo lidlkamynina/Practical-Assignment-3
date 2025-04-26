@@ -1,0 +1,26 @@
+{
+  "name": "practical-assignment-3-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lidlkamynina/Practical-Assignment-3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lidlkamynina/Practical-Assignment-3/issues"
+  },
+  "homepage": "https://github.com/lidlkamynina/Practical-Assignment-3#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.4",
+    "@tailwindcss/vite": "^4.1.4",
+    "flowbite": "^3.1.2",
+    "tailwindcss": "^4.1.4"
+  }
+}

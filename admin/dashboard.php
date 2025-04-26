@@ -1,6 +1,7 @@
 <?php
-require_once 'includes/db.php';
-require_once 'classes/Service.php';
+require_once '../includes/db.php';
+require_once '../classes/Service.php';
+
 
 $service = new Service($pdo);
 
