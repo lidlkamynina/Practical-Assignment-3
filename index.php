@@ -1,31 +1,37 @@
 <?php
+// echo '<pre>';
+// print_r($_COOKIE);
+// echo '</pre>';
+?> 
 
-
+<?php
 include 'layout/head.php';
+?>
+<?php
+if (isset($_SESSION['login_success'])) {
+    $welcomeMessage = $_SESSION['login_success'];
+    unset($_SESSION['login_success']); 
+}
+elseif (isset($_COOKIE['name']) && isset($_COOKIE['last_visit'])) {
+    $name = htmlspecialchars($_COOKIE['name']);
+    $lastVisit = htmlspecialchars($_COOKIE['last_visit']);
+    $welcomeMessage = "Welcome back, {$name}! Last visit: {$lastVisit}";
+} else {
+    $welcomeMessage = null; 
+}
 ?>
 <!DOCTYPE html>
 <html class="dark">
 
-<body id="boddy" class="">
+<body class="">
 
     <main class="min-h-screen bg-gray-100 dark:bg-gray-900 px-4 py-8">
-        <?php if (isset($_SESSION['login_success'])): ?>
-            <div id="login-success" class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100 dark:bg-green-800 dark:text-green-200" role="alert">
-                <?= htmlspecialchars($_SESSION['login_success']); ?>
+        <?php if ($welcomeMessage): ?>
+            <div id="login-success" class="bg-green-100 text-green-800 p-4 rounded-lg mb-6 text-center">
+                <?= $welcomeMessage ?>
             </div>
-            <?php unset($_SESSION['login_success']); ?>
-            <script>
-                // Auto-hide the message after 3 seconds (3000 ms)
-                setTimeout(() => {
-                    const successAlert = document.getElementById('login-success');
-                    if (successAlert) {
-                        successAlert.style.transition = 'opacity 0.5s ease';
-                        successAlert.style.opacity = '0';
-                        setTimeout(() => successAlert.remove(), 500); // Remove from DOM after fade
-                    }
-                }, 3000);
-            </script>
         <?php endif; ?>
+
         <section class="bg-white dark:bg-gray-900">
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
 
@@ -92,7 +98,7 @@ include 'layout/head.php';
                 <!-- Feature Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Card 1 -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center transform hover:scale-105 hover:shadow-2xl transition">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center transform hover:scale-105 hover:shadow-2xl ">
                         <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-blue-100 dark:bg-blue-900 rounded-full">
                             <img src="https://cdn-icons-png.flaticon.com/512/1828/1828673.png" alt="Gallery" class="w-8 h-8 text-blue-600 dark:text-blue-400">
                         </div>
@@ -104,7 +110,7 @@ include 'layout/head.php';
 
                     <!-- Card 2 -->
 
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center transform hover:scale-105 hover:shadow-2xl transition">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center transform hover:scale-105 hover:shadow-2xl ">
                         <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-green-100 dark:bg-green-900 rounded-full">
                             <img src="https://cdn-icons-png.flaticon.com/512/1828/1828673.png" alt="Stories" class="w-8 h-8 text-green-600 dark:text-green-400">
                         </div>
@@ -115,7 +121,7 @@ include 'layout/head.php';
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center transform hover:scale-105 hover:shadow-2xl transition">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center transform hover:scale-105 hover:shadow-2xl ">
                         <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-yellow-100 dark:bg-yellow-900 rounded-full">
                             <img src="https://cdn-icons-png.flaticon.com/512/1828/1828673.png" alt="Services" class="w-8 h-8 text-yellow-600 dark:text-yellow-400">
                         </div>
@@ -135,6 +141,17 @@ include 'layout/head.php';
 
     <?php include 'layout/footer.php'; ?>
     <script src="js/script.js"></script>
+    <script>
+        // Fade out after 3 seconds
+        setTimeout(() => {
+            const successAlert = document.getElementById('login-success');
+            if (successAlert) {
+                successAlert.style.transition = 'opacity 0.5s ease';
+                successAlert.style.opacity = '0';
+                setTimeout(() => successAlert.remove(), 500);
+            }
+        }, 3000);
+    </script>
 </body>
 
 </html>

@@ -1,3 +1,5 @@
+<?php ob_start(); ?>
+
 <?php
 session_start();
 require_once '../includes/db.php';
@@ -12,13 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['password'])) {
+        echo "Login successful for {$user['name']}<br>";
+
         session_regenerate_id(true);
         $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['login_success'] = "Welcome back, {$user['username']}!";
+        $_SESSION['name'] = $user['name'];
+        $_SESSION['login_success'] = "Welcome back, {$user['name']}!";
 
-        setcookie('last_visit', date('Y-m-d H:i:s'), time() + 86400 * 30, "/");
-        setcookie('username', $user['username'], time() + 86400 * 30, "/");
+        setcookie('name', $user['name'], time() + (86400 * 30), "/"); // 30 days
+        setcookie('last_visit', date('Y-m-d H:i:s'), time() + (86400 * 30), "/"); // 30 days
+        echo "Cookies set!<br>";
 
         header('Location: /Practical-Assignment-3/index.php');
         exit;
@@ -27,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// 🧠 Only now, after all processing, you can start sending HTML
+
 
 ?>
 <html>
@@ -97,6 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     <?php include '../layout/footer.php'; ?>
+    <?php ob_end_flush(); ?>
+
 </body>
 
 </html>

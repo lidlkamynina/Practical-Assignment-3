@@ -1,4 +1,4 @@
-<footer id="footer" class="transition transition-900 duration-900 ease-in-out bg-white text-gray-600 dark:bg-gray-900 dark:text-gray-300">
+<footer id="footer" class=" bg-white text-gray-600 dark:bg-gray-900 dark:text-gray-300">
 
 
   <div

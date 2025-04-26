@@ -267,6 +267,9 @@
   .z-50 {
     z-index: 50;
   }
+  .col-span-3 {
+    grid-column: span 3 / span 3;
+  }
   .container {
     width: 100%;
     @media (width >= 40rem) {

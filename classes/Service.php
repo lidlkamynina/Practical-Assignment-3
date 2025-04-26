@@ -25,4 +25,14 @@ class Service {
         $stmt = $this->pdo->prepare("DELETE FROM services WHERE id = ?");
         return $stmt->execute([$id]);
     }
+    public function search($term = '') {
+        if ($term) {
+            $stmt = $this->pdo->prepare('SELECT * FROM services WHERE title LIKE ? OR description LIKE ?');
+            $wildcard = "%$term%";
+            $stmt->execute([$wildcard, $wildcard]);
+        } else {
+            $stmt = $this->pdo->query('SELECT * FROM services');
+        }
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
