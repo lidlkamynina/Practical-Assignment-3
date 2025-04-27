@@ -23,7 +23,7 @@
         <h6 class="uppercase font-bold mb-4 flex items-center">
           <i class="fas fa-gem mr-3"></i> Stillife
         </h6>
-        <p class="text-gray-600 dark:text-gray-300 group-hover:text-white transition-colors duration-300">
+        <p class="text-gray-600 dark:text-gray-300 group-hover:text-white  ">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti, optio, ullam in excepturi aliquid
           explicabo iure nihil nulla laboriosam veritatis dolorum voluptas laborum sunt rerum?
         </p>
@@ -36,45 +36,45 @@
           <li>
             <a
               href="/index.html"
-              class="text-gray-600 dark:text-gray-400 group-hover:text-white transition-colors duration-300 hover:underline">Home</a>
+              class="text-gray-600 dark:text-gray-400 group-hover:text-white   hover:underline">Home</a>
           </li>
           <li>
             <a
               href="/services.html"
-              class="text-gray-600 dark:text-gray-400 group-hover:text-white transition-colors duration-300 hover:underline">Services</a>
+              class="text-gray-600 dark:text-gray-400 group-hover:text-white   hover:underline">Services</a>
           </li>
           <li>
             <a
               href="/contact.html"
-              class="text-gray-600 dark:text-gray-400 group-hover:text-white transition-colors duration-300 hover:underline">Contact</a>
+              class="text-gray-600 dark:text-gray-400 group-hover:text-white   hover:underline">Contact</a>
           </li>
           <li>
             <a
               href="/about.html"
-              class="text-gray-600 dark:text-gray-400 group-hover:text-white transition-colors duration-300 hover:underline">About</a>
+              class="text-gray-600 dark:text-gray-400 group-hover:text-white   hover:underline">About</a>
           </li>
         </ul>
       </div>
 
       <div>
         <h6 class="uppercase font-bold mb-4">Contact</h6>
-        <p class="flex items-center text-gray-600 dark:text-gray-400 group-hover:text-white transition-colors duration-300">
+        <p class="flex items-center text-gray-600 dark:text-gray-400 group-hover:text-white  ">
           <i class="fas fa-home mr-3"></i> New York, NY 10012, US
         </p>
-        <p class="flex items-center text-gray-600 dark:text-gray-400 group-hover:text-white transition-colors duration-300">
+        <p class="flex items-center text-gray-600 dark:text-gray-400 group-hover:text-white  ">
           <i class="fas fa-envelope mr-3"></i> info@example.com
         </p>
-        <p class="flex items-center text-gray-600 dark:text-gray-400 group-hover:text-white transition-colors duration-300">
+        <p class="flex items-center text-gray-600 dark:text-gray-400 group-hover:text-white  ">
           <i class="fas fa-phone mr-3"></i> + 371 234 567 88
         </p>
-        <p class="flex items-center text-gray-600 dark:text-gray-400 group-hover:text-white transition-colors duration-300">
+        <p class="flex items-center text-gray-600 dark:text-gray-400 group-hover:text-white  ">
           <i class="fas fa-print mr-3"></i> + 371 234 567 89
         </p>
       </div>
     </div>
   </div>
 
-  <div class="text-center p-4 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 group-hover:text-white transition-colors duration-300 text-sm">
+  <div class="text-center p-4 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 group-hover:text-white  text-sm">
     © <span class="year"></span> Copyright:
     <a class="font-bold hover:underline text-gray-600 dark:text-white" href="#">Stillife</a>
   </div>

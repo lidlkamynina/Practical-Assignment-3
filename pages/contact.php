@@ -3,10 +3,10 @@
 
 <?php include '../layout/head.php'; ?>
 
-<body id="boddy" class="bg-light ">
+<body class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
-  <main class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4 py-8">
-    <section class="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+<main class="flex-1 flex items-center justify-center px-4 py-12">
+<section class="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
       <h1 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-6">Contact Us</h1>
 
       <form id="contact-form" class="space-y-6">

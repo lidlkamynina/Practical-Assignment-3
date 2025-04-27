@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Your custom CSS -->
-  <!-- <link rel="stylesheet" href="css/styles.css" /> -->
+  <link rel="stylesheet" href="/Practical-Assignment-3/src/css/styles.css" />
 <!-- You have two of these -->
 <!-- <link rel="stylesheet" href="/Practical-Assignment-3/src/css/output.css" /> -->
 <link href="/Practical-Assignment-3/src/output.css" rel="stylesheet">

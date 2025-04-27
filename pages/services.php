@@ -13,10 +13,9 @@ $services = $service->search($search); // You must implement a search($term) met
 <html lang="en">
 <?php include '../layout/head.php'; ?>
 
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<body class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 
-
-    <main class="min-h-screen flex justify-center bg-gray-100 dark:bg-gray-900 px-4 py-8">
+<main class="flex-1 flex items-center justify-center px-4 py-12">
         <section class="max-w-7xl w-full px-4">
             <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-8">
                 Our Photography Services
