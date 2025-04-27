@@ -22,14 +22,17 @@ if (isset($_SESSION['login_success'])) {
 <!DOCTYPE html>
 <html class="">
 
-<body class="">
+<body class="bg-gray-100 dark:bg-gray-900">
 
-    <main class="min-h-screen bg-gray-100 dark:bg-gray-900">
-        <?php if ($welcomeMessage): ?>
-            <div id="login-success" class="bg-green-100 text-green-800 p-4 rounded-lg mb-6 text-center">
-                <?= $welcomeMessage ?>
+    <main class="min-h-screen ">
+        <div class="flex justify-center items-center h-screen">
+            <div class="fixed left-1/2 transform -translate-x-1/2 z-50" style="top: 100px;">
+                <div class="message bg-green-100 text-xl text-green-800 p-4 rounded-lg text-center w-auto px-8 shadow-lg">
+                    <?= htmlspecialchars($welcomeMessage) ?>
+                </div>
             </div>
-        <?php endif; ?>
+        </div>
+
 
 
         <section class="">
@@ -114,17 +117,7 @@ if (isset($_SESSION['login_success'])) {
 
     <?php include 'layout/footer.php'; ?>
     <script src="js/script.js"></script>
-    <script>
-        // Fade out after 3 seconds
-        setTimeout(() => {
-            const successAlert = document.getElementById('login-success');
-            if (successAlert) {
-                successAlert.style.transition = 'opacity 0.5s ease';
-                successAlert.style.opacity = '0';
-                setTimeout(() => successAlert.remove(), 500);
-            }
-        }, 3000);
-    </script>
+
 </body>
 
 </html>

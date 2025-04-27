@@ -16,10 +16,11 @@ class Service {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function update($id, $title, $desc) {
-        $stmt = $this->pdo->prepare("UPDATE services SET title = ?, description = ? WHERE id = ?");
-        return $stmt->execute([$title, $desc, $id]);
+    public function update($id, $title, $desc, $img) {
+        $stmt = $this->pdo->prepare("UPDATE services SET title = ?, description = ?, image = ? WHERE id = ?");
+        return $stmt->execute([$title, $desc, $img, $id]);
     }
+    
 
     public function delete($id) {
         $stmt = $this->pdo->prepare("DELETE FROM services WHERE id = ?");

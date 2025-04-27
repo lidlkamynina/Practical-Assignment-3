@@ -1,3 +1,13 @@
+// Fade out after 3 seconds
+setTimeout(() => {
+    const successAlert = document.getElementsByClassName('message')[0];
+    if (successAlert) {
+        successAlert.style.transition = 'opacity 0.5s ease';
+        successAlert.style.opacity = '0';
+        setTimeout(() => successAlert.remove(), 500);
+    }
+}, 3000);
+
 // function toggleDarkMode() {
 //     const body = document.body;
 //     const navbar = document.querySelector(".navbar");

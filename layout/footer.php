@@ -89,3 +89,4 @@
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 <!-- Script for darkButtons functionality -->
 <script src="/Practical-Assignment-3/src/js/darkmode.js"></script>
+<script src="/Practical-Assignment-3/src/js/script.js"></script>
