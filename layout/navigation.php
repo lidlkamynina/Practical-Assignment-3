@@ -1,6 +1,5 @@
 <?php
 
-
 $base_url = '/Practical-Assignment-3';
 $base_pages = '/Practical-Assignment-3/pages';
 

@@ -6,9 +6,10 @@
 
 <?php
 include 'layout/head.php';
-?>
-<?php
-if (isset($_SESSION['login_success'])) {
+
+
+$welcomeMessage = null;
+if (is_logged_in() && isset($_SESSION['login_success'])) {
     $welcomeMessage = $_SESSION['login_success'];
     unset($_SESSION['login_success']);
 } elseif (isset($_COOKIE['name']) && isset($_COOKIE['last_visit'])) {
@@ -19,20 +20,23 @@ if (isset($_SESSION['login_success'])) {
     $welcomeMessage = null;
 }
 ?>
+
 <!DOCTYPE html>
 <html class="">
 
 <body class="bg-gray-100 dark:bg-gray-900">
 
     <main class="min-h-screen ">
-        <div class="flex justify-center items-center h-screen">
-            <div class="fixed left-1/2 transform -translate-x-1/2 z-50" style="top: 100px;">
-                <div class="message bg-green-100 text-xl text-green-800 p-4 rounded-lg text-center w-auto px-8 shadow-lg">
-                    <?= htmlspecialchars($welcomeMessage) ?>
+        <?php if (!empty($welcomeMessage)): ?>
+
+            <div class="flex justify-center items-center h-screen">
+                <div class="fixed left-1/2 transform -translate-x-1/2 z-50" style="top: 100px;">
+                    <div class="message bg-green-100 text-xl text-green-800 p-4 rounded-lg text-center w-auto px-8 shadow-lg">
+                        <?= htmlspecialchars($welcomeMessage) ?>
+                    </div>
                 </div>
             </div>
-        </div>
-
+        <?php endif; ?>
 
 
         <section class="">
