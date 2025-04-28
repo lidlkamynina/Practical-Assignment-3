@@ -1,3 +1,34 @@
+<?php
+include '../db_connect.php'; // or wherever your db connection file is
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fname = trim($_POST['fname']);
+    $lname = trim($_POST['lname']);
+    $email = trim($_POST['email']);
+    $message = trim($_POST['message']);
+
+    if (!empty($fname) && !empty($lname) && !empty($email) && !empty($message)) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $fullName = $fname . " " . $lname;
+
+            $stmt = $conn->prepare("INSERT INTO messages (name, email, message) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $fullName, $email, $message);
+
+            if ($stmt->execute()) {
+                header("Location: thankyou.php");
+                exit();
+            } else {
+                $error_message = "Database error. Please try again.";
+            }
+        } else {
+            $error_message = "Invalid email format.";
+        }
+    } else {
+        $error_message = "All fields are required.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +40,7 @@
 <section class="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
       <h1 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-6">Contact Us</h1>
 
-      <form id="contact-form" class="space-y-6">
+      <form id="contact-form" class="space-y-6" method="POST" action="contact.php">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label for="fname" class="block mb-1 text-gray-700 dark:text-gray-300">First Name</label>
@@ -51,38 +82,35 @@
 
   <script src="js/script.js"></script>
 
-  <script>
-    document.getElementById("contact-form").addEventListener("submit", function(event) {
-      event.preventDefault(); // Prevent form submission
+<script>
+document.getElementById("contact-form").addEventListener("submit", function(event) {
+  let fname = document.getElementById("fname").value.trim();
+  let lname = document.getElementById("lname").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let message = document.getElementById("message").value.trim();
 
-      let fname = document.getElementById("fname").value.trim();
-      let lname = document.getElementById("lname").value.trim();
-      let email = document.getElementById("email").value.trim();
-      let message = document.getElementById("message").value.trim();
+  let emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+  let errors = [];
 
-      let emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
-      let errors = [];
+  if (!fname) errors.push("First name is required.");
+  if (!lname) errors.push("Last name is required.");
+  if (!email) errors.push("Email is required.");
+  else if (!emailRegex.test(email)) errors.push("Invalid email format.");
+  if (message.length < 10) errors.push("Message must be at least 10 characters long.");
 
-      if (!fname) errors.push("First name is required.");
-      if (!lname) errors.push("Last name is required.");
-      if (!email) errors.push("Email is required.");
-      else if (!emailRegex.test(email)) errors.push("Invalid email format.");
-      if (message.length < 10) errors.push("Message must be at least 10 characters long.");
+  let alertBox = document.getElementById("alert");
 
-      let alertBox = document.getElementById("alert");
-      if (errors.length > 0) {
-        alertBox.className = "bg-red-100 text-red-700 border border-red-400 rounded px-4 py-3 my-4";
+  if (errors.length > 0) {
+    event.preventDefault(); // stop submitting
+    alertBox.className = "bg-red-100 text-red-700 border border-red-400 rounded px-4 py-3 my-4";
+    alertBox.innerHTML = errors.join("<br>");
+    alertBox.classList.remove("hidden");
+  } else {
+    // Allow real submission to PHP
+  }
+});
+</script>
 
-        alertBox.innerHTML = errors.join("<br>");
-        alertBox.classList.remove("d-none");
-      } else {
-        alertBox.className = "bg-green-100 text-green-700 border border-green-400 rounded px-4 py-3 my-4";
-
-        alertBox.innerHTML = "Form submitted successfully!";
-        alertBox.classList.remove("d-none");
-      }
-    });
-  </script>
 
 
 </body>
