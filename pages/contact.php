@@ -1,6 +1,6 @@
 <?php
-include '../db_connect.php'; // or wherever your db connection file is
-
+// include '../db_connect.php'; // or wherever your db connection file is
+require_once '../includes/db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fname = trim($_POST['fname']);
     $lname = trim($_POST['lname']);
