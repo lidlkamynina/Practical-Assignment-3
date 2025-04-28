@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = "Incorrect password.";
         } 
          else {
-            echo "Login successful for {$user['name']}<br>";
+            // echo "Login successful for {$user['name']}<br>";
 
             session_regenerate_id(true);
             $_SESSION['user_id'] = $user['id'];
@@ -30,8 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             setcookie('name', $user['name'], time() + (86400 * 30), "/"); // 30 days
             setcookie('last_visit', date('Y-m-d H:i:s'), time() + (86400 * 30), "/"); // 30 days
-            echo "Cookies set!<br>";
-
             header('Location: /Practical-Assignment-3/index.php');
             exit;
         }

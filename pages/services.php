@@ -3,10 +3,9 @@ require_once '../includes/db.php';
 require_once '../classes/Service.php';
 
 $service = new Service($pdo);
-
-// Handle search
+// Search
 $search = $_GET['search'] ?? '';
-$services = $service->search($search); // You must implement a search($term) method inside your Service class
+$services = $service->search($search); 
 ?>
 
 <!DOCTYPE html>

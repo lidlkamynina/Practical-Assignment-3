@@ -1,3 +1,7 @@
+<?php include '../layout/head.php'; ?>
+<body class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<main class="flex-1 flex items-center justify-center px-4 py-12">
+
 <?php
 $host = 'localhost';
 $user = 'root';
@@ -46,7 +50,13 @@ try {
 
     ");
 
-    echo "Database and tables created successfully!";
+    echo "<p> Table <strong>messages</strong> created or already exists.</p>";
 } catch (PDOException $e) {
     echo "Database error: " . $e->getMessage();
+
 }
+?>
+</main>
+</body>
+  <?php include '../layout/footer.php'; ?>
+
