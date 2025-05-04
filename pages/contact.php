@@ -11,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $fullName = $fname . " " . $lname;
 
-            $stmt = $conn->prepare("INSERT INTO messages (name, email, message) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $fullName, $email, $message);
+            $stmt = $pdo->prepare("INSERT INTO messages (name, email, message) VALUES (?, ?, ?)");
+            $stmt->execute([$fullName, $email, $message]);
 
             if ($stmt->execute()) {
                 header("Location: thankyou.php");

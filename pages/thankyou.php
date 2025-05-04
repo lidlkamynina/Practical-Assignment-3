@@ -10,7 +10,7 @@
 <div class="container mt-5 text-center">
     <h2>Thank You!</h2>
     <p>Your message has been received. We will get back to you soon.</p>
-    <a href="index.php" class="btn btn-success mt-3">Return to Home</a>
+    <a href="../index.php" class="btn btn-success mt-3">Return to Home</a>
 </div>
 
 </body>
